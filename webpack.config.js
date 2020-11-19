@@ -11,10 +11,6 @@ module.exports = {
   },
   module: {
     rules: [   
-      {
-        test: /\.vue$/,
-        use: ['vue-loader']
-      },
       // css处理     
       {
         test: /\.css$/,
@@ -26,8 +22,12 @@ module.exports = {
       // less处理
       {
         test: /\.less$/,
-        use: ['style-loader', 'vue-style-loader', 'css-loader', 'less-loader']
-      },      
+        use: ['style-loader', 'css-loader', 'less-loader']
+      },  
+      {
+        test: /\.vue$/,
+        use: ['vue-loader']
+      },          
       // 多媒体
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)$/,
