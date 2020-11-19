@@ -1,3 +1,3 @@
 export default function b() {
-    console.log('b.js')
+    console.log('b1daf.js')
 }
