@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 module.exports = {
   devtool: 'eval-source-map',
   entry: './src/main.js',
@@ -10,10 +11,22 @@ module.exports = {
   },
   module: {
     rules: [   
-      // less 处理
+      {
+        test: /\.vue$/,
+        use: ['vue-loader']
+      },
+      // css处理     
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      },      
+      // less处理
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
+        use: ['style-loader', 'vue-style-loader', 'css-loader', 'less-loader']
       },      
       // 多媒体
       {
@@ -58,7 +71,8 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({template: path.resolve(__dirname, './src/index.html')})
+    new HtmlWebpackPlugin({template: path.resolve(__dirname, './src/index.html')}),
+    new VueLoaderPlugin()
   ],
   devServer: {
     contentBase: path.join(__dirname, "./dist"),
