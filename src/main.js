@@ -1,1 +1,3 @@
-console.log('hh12334h')
+require('./css/index.less')
+import b from './b.js'
+b()

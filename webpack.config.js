@@ -8,8 +8,57 @@ module.exports = {
     filename: '[name].[hash:8].js',
     publicPath: '/'
   },
+  module: {
+    rules: [   
+      // less 处理
+      {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader']
+      },      
+      // 多媒体
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            outputPath: 'media',
+            name: '[name]_[hash:8].[ext]'
+          }
+        }]
+      },
+      // 图片
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            outputPath: 'img',
+            name: '[name]_[hash:8].[ext]'
+          }
+        }]
+      },
+      // 文字
+      {
+        test: /\.(ttf|eot|woff|woff2|otf)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            outputPath: 'font',
+            name: '[name]_[hash:8].[ext]'
+          }
+        }]
+      },
+      {
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader'
+        },
+        exclude: '/node_modules/'
+      },         
+    ]
+  },
   plugins: [
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin({template: path.resolve(__dirname, './src/index.html')})
   ],
   devServer: {
     contentBase: path.join(__dirname, "./dist"),
