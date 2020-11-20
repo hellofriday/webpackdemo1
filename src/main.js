@@ -1,4 +1,1 @@
-function a() {
-    console.log('hh123')
-}
-a()
+console.log('12343')
