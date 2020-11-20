@@ -3,13 +3,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { options } = require('less');
 
 module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].[hash:8].js',
-    publicPath: '/'
+    publicPath: './'
   },
   optimization: {
     splitChunks: {
@@ -29,8 +30,18 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath : "../"
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              minimize: true
+            }
+          },
           'sprites-loader'
         ]
       },      
@@ -38,8 +49,18 @@ module.exports = {
       {
         test: /\.less$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath : "../"
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              minimize: true
+            }
+          },
           'sprites-loader',
           'less-loader'
         ]
@@ -95,8 +116,7 @@ module.exports = {
     new VueLoaderPlugin(),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: "css/[name]_[contenthash:8].css",
-      publicPath : "css"
+      filename: "css/[name]_[contenthash:8].css"
     })
   ]
 }

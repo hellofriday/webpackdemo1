@@ -15,16 +15,14 @@ export default {
 </script>
 <style lang="less" scoped>
 .msg {
-    width: 100px;
-    height: 100px;
+    width: 640px;
+    height: 640px;
     background: url('../img/a.jpg?__sprite') no-repeat;
-    background-size: contain;
     color: aqua;
 }
 .msg2 {
-    width: 100px;
-    height: 100px;
+    width: 246px;
+    height: 346px;
     background: url('../img/b.jpg?__sprite') no-repeat;
-    background-size: contain;
 }
 </style>
