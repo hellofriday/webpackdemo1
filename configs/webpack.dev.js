@@ -80,6 +80,6 @@ module.exports = {
     host:'0.0.0.0',
     open: false,
     disableHostCheck: true,
-    hot: true //是否开启热更，调试html时候关闭，调试css与js开启
+    hot: true 
   }
 }
